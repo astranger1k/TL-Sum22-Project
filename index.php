@@ -9,4 +9,6 @@ require_once 'includes/components.php';
 
 // Header
 new Component_Header($page_title = 'Home');
+new Component_Navbar();
+
 ?>
