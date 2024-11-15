@@ -33,7 +33,7 @@ class Component_Header {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title><?php echo $this->page_title; ?></title>
         
-            <link rel="stylesheet" href="/assets/css/tailwind.css">
+            <link rel="stylesheet" href="assets/css/tailwind.css">
         </head>
         <body>
         <?php
