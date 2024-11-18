@@ -22,6 +22,7 @@ class Component_UIKit_Button
         'color_hover' => 'primary-700',
         'icon' => null,
         'size' => 'md',
+        'additional_classes' => ''
     ])
     {
         $this->config = $config;
@@ -36,7 +37,7 @@ class Component_UIKit_Button
     public function render()
     {
 ?>
-        <a href='<?php echo $this->config['url']; ?>' class='bg-<?php echo $this->config['color']; ?> text-white px-4 py-2 rounded hover:bg-<?php echo $this->config['color_hover']; ?>'>
+        <a href='<?php echo $this->config['url']; ?>' class='bg-<?php echo $this->config['color']; ?> text-white px-4 py-2 rounded hover:bg-<?php echo $this->config['color_hover']; ?> <?php echo $this->config['additional_classes']; ?>'>
             <?php if (isset($this->config['icon'])) : ?>
                 <i class='fas fa-<?php echo $this->config['icon']; ?>'></i>
             <?php endif; ?>

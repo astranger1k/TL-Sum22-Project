@@ -27,7 +27,7 @@ class Component_Navbar
     public function render()
     {
 ?>
-        <nav class="bg-gray-800 p-4 sticky top-0 z-50">
+        <nav class="p-4 fixed w-full top-0 z-50 transition-colors duration-300" id="navbar">
             <div class="container mx-auto flex justify-between items-center">
                 <div class="text-white text-lg font-bold">
                     GibJohn Tutoring
@@ -40,9 +40,12 @@ class Component_Navbar
                 <div class="space-x-4">
                     <?php
                     if (isset($_SESSION['user'])) {
-                    ?>
-                        <a href="/auth.php?mode=sign-out" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Sign Out</a>
-                    <?php
+                        new Component_UIKit_Button([
+                            'title' => 'Sign Out',
+                            'url' => '/auth.php?mode=sign-out',
+                            'color' => 'red-500',
+                            'color_hover' => 'red-700',
+                        ]);
                     } else {
                         new Component_UIKit_Button([
                             'title' => 'Sign In',
@@ -61,6 +64,16 @@ class Component_Navbar
                 </div>
             </div>
         </nav>
+        <script>
+            window.addEventListener('scroll', function() {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 0) {
+                    navbar.classList.add('bg-gray-800');
+                } else {
+                    navbar.classList.remove('bg-gray-800');
+                }
+            });
+        </script>
 <?php
     }
 }

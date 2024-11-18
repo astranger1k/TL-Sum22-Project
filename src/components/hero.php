@@ -2,7 +2,8 @@
 
 include_once 'uikit/button.php';
 
-class Component_Hero {
+class Component_Hero
+{
 
     /**
      * Config
@@ -18,6 +19,7 @@ class Component_Hero {
     public function __construct($config = [
         'hero_id' => 'hero',
         'hero_img' => 'assets/images/hero.jpg',
+        'hero_img_blur' => true,
         'hero_title' => 'Welcome to our website',
         'hero_img_copyright_notice' => null,
         'hero_subtitle' => 'This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.',
@@ -25,7 +27,8 @@ class Component_Hero {
             ['title' => 'Learn More', 'url' => '#', 'color' => 'primary'],
             ['title' => 'Contact Us', 'url' => '#', 'color' => 'secondary'],
         ]
-    ]) {
+    ])
+    {
         $this->config = $config;
         $this->render();
     }
@@ -34,10 +37,19 @@ class Component_Hero {
      * Render the header
      * @return void
      */
-    public function render() {
-        ?>
-        <section id='<?php echo $this->config['hero_id']; ?>' class='bg-cover bg-center bg-no-repeat h-screen flex items-center justify-center' style='background-image: url(<?php echo $this->config['hero_img']; ?>);'>
-            <div class='text-center'>
+    public function render()
+    {
+?>
+        <section id='<?php echo $this->config['hero_id']; ?>' class='relative h-screen flex items-center justify-center w-full overflow-hidden'>
+            <div class='absolute inset-0 w-full h-full'>
+                <img
+                    src='<?php echo $this->config['hero_img']; ?>'
+                    alt='Hero background'
+                    class='w-full h-full object-cover <?php echo $this->config['hero_img_blur'] ? 'blur-sm' : ''; ?>'
+                    style='width: 100vw; margin: 0; padding: 0;' />
+            </div>
+
+            <div class='relative z-10 text-center'>
                 <h1 class='text-4xl text-white font-bold'><?php echo $this->config['hero_title']; ?></h1>
                 <p class='text-white'><?php echo $this->config['hero_subtitle']; ?></p>
 
@@ -56,12 +68,11 @@ class Component_Hero {
             </div>
 
             <?php if ($this->config['hero_img_copyright_notice']) : ?>
-                <div class='absolute bottom-0 right-0 p-4 text-white text-sm'>
+                <div class='absolute bottom-0 right-0 p-4 text-white text-sm z-10'>
                     <?php echo $this->config['hero_img_copyright_notice']; ?>
                 </div>
             <?php endif; ?>
         </section>
-        <?php
+<?php
     }
 }
-                
